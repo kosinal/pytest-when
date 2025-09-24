@@ -23,6 +23,7 @@ from friendly_sequences import Seq
 from pytest_mock.plugin import MockCacheItem
 from typing_extensions import ParamSpec
 
+from pytest_when.interface import ThenResponse, WhenResponse
 
 if TYPE_CHECKING:
     from unittest.mock import MagicMock
@@ -247,7 +248,9 @@ class When(
         _TargetCls,
         _TargetMethodParams,
         _TargetMethodReturn,
-    ]
+    ],
+    ThenResponse,
+    WhenResponse
 ):
     """Patching utility focused on readability.
 
@@ -423,7 +426,7 @@ class When(
 
 
 @pytest.fixture
-def when(mocker: MockerFixture) -> When:
+def when(mocker: MockerFixture) -> WhenResponse:
     """Patching utility focused on readability.
 
     Example:
